@@ -10,21 +10,25 @@
 
 */
 
-var inputAmount = prompt("Enter an amount of money ex: 4.77");
-var cents=Math.round(inputAmount*100)%100;
+let inputAmount = prompt("Enter an amount of money ex: 4.77");
+const cents=Math.round(inputAmount*100)%100;
 
-
-function amountAndRemainder(coinValue) {
-  var currentCoin = Math.floor(cents/coinValue);
+// function that takes a coin value as an arg and outputs the amount of coins of that value
+const amountAndRemainder = (coinValue) => {
+  let currentCoin = Math.floor(cents/coinValue);
   cents = cents % coinValue;
   return currentCoin;
 }
 
-function coinCounter () {
+//gets dollar amount from inputted amount
+const getDollars = () => Math.floor(inputAmount)
+
+//function that breaks down the inputted value
+const coinCounter = () => {
   // Initialize a JavaScript object to hold the coins
-  var coinPurse = {dollars:0,quarters:0,dimes:0,nickels:0,pennies:0}
+  let coinPurse = {dollars:0, quarters:0, dimes:0, nickels:0, pennies:0}
   //break dollar amount off
-  coinPurse.dollars = Math.floor(inputAmount);
+  coinPurse.dollars = getDollars()
   //take cents and divide by 25, get remainder
   coinPurse.quarters = amountAndRemainder(25);
   //take remainder and divide by 10, get remainder
@@ -36,5 +40,5 @@ function coinCounter () {
   return coinPurse;
 }
 
-var coins = coinCounter()
+let coins = coinCounter()
 console.log(coins);
